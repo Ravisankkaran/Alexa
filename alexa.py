@@ -40,7 +40,13 @@ def takecommand():
 def runalexa():
     command1 = takecommand()
     print(command1)
-    if 'what' in command1:
+    if 'what is '  in command1 or 'who is'in command1:
+       talk('I found This On Wikipedia')
+       person = command1.replace('what is', '')
+       info = wikipedia.summary(person, 1)
+       print(info)
+       talk(info)
+    elif 'what' in command1:
         webb = command1.replace('what', '')
         print('what ' + webb)
         talk('what ' + webb)
@@ -49,12 +55,7 @@ def runalexa():
         time = datetime.datetime.now().strftime('%I:%M %p')
         print('Current time is ' + time)
         talk('Current time is ' + time)
-   #elif 'what is '  in command1 or 'who is'in command1:
-    #    talk('I found This On Wikipedia')
-    #    person = command1.replace('what is', '')
-     #   info = wikipedia.summary(person, 1)
-     #   print(info)
-     #   talk(info)
+  
     elif 'date' in command1:
         date_object = datetime.date.today()
         print(date_object)
@@ -125,6 +126,8 @@ def runalexa():
     else:
        # print('Please say the command again.')
         talk('Please say the command again.')
+
+
  
 
 while True:
