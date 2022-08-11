@@ -127,8 +127,21 @@ def runalexa():
        # print('Please say the command again.')
         talk('Please say the command again.')
 
+def wakeComment():
+    command=''
 
+    try:
+        with sr.Microphone() as source:
+            voice = listener.listen(source)
+            command = listener.recognize_google(voice)
+            command = command.lower()
+    except:
+        pass
+    return command
  
 
 while True:
-    runalexa()
+    comment = wakeComment()
+
+    if comment == 'hay alexa':
+        runalexa()
